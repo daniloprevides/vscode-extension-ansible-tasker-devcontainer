@@ -1,0 +1,104 @@
+{
+	"name": "tasker",
+	"displayName": "ansible task container executor",
+	"description": "ansible task container executor",
+	"publisher": "daniloprevides",
+	"version": "0.1.0",
+	"engines": {
+		"vscode": "^1.56.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:ansible-container-task.execute",
+		"onView:ansible-container-task"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "ansible-container-task.execute",
+				"title": "Execute Project Task"
+			},
+			{
+                "command": "ansible-container-task.refreshEntry",
+                "title": "Refresh"
+            },
+			{
+                "command": "ansible-container-task.executeTask",
+                "title": "run"
+            }
+		],
+		"configuration": {
+			"containerPath": "string",
+			"ansibleCommand": "string"
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "ansible-container-task.refreshEntry",
+					"when": "view == ansible-container-task",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+				  	"command": "ansible-container-task.executeTask",
+					"group": "inline"
+				},
+				{
+					"command": "ansible-container-task.executeTask"
+			  	}
+			  ]
+		},
+		"views": {
+			"ansible-container-task": [
+			  {
+				"id": "ansible-container-task",
+				"name": "Tasks List",
+				"icon": "media/task-icon.svg",
+				"contextualTitle": "Project Tasks"
+			  }
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+			  {
+				"id": "ansible-container-task",
+				"title": "Project Tasks",
+				"icon": "media/task-icon.svg"
+			  }
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"test-compile": "tsc -p ./",
+		"test-watch": "tsc -watch -p ./",
+		"pretest": "yarn run test-compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.4",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.56.0",
+		"@typescript-eslint/eslint-plugin": "^4.14.1",
+		"@typescript-eslint/parser": "^4.14.1",
+		"eslint": "^7.19.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.2.1",
+		"ts-loader": "^8.0.14",
+		"typescript": "^4.1.3",
+		"vscode-test": "^1.5.0",
+		"webpack": "^5.19.0",
+		"webpack-cli": "^4.4.0"
+	},
+	"dependencies": {
+	}
+}
