@@ -1,4 +1,4 @@
-# siemens-task README
+# README
 
 This is a simple extensions to allow using ansible tasks inside a devcontainer.
 created by daniloprevides@gmail.com
