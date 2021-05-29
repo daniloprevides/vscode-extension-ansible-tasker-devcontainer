@@ -3,7 +3,7 @@
 	"displayName": "ansible task container executor",
 	"description": "ansible task container executor",
 	"publisher": "daniloprevides",
-	"version": "0.1.0",
+	"version": "0.1.2",
 	"engines": {
 		"vscode": "^1.56.0"
 	},

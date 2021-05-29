@@ -50,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const ext = path.extname(name);
 		let exec = `${ansibleCommand} ${taskDefinition?.path}`;
 		if (ext.trim() === ".sh"){
-			exec = taskDefinition?.path as string;
+			exec = `/bin/bash ${taskDefinition?.path}` as string;
 		}
 		const terminal = vscode.window.createTerminal(taskDefinition?.name);
 		terminal.show();
