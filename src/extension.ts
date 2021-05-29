@@ -47,7 +47,11 @@ export function activate(context: vscode.ExtensionContext) {
 	const shellExecute = (name:string)=> {
 		const taskDefinition = tasks.find(t => t.name == name);
 		vscode.window.showInformationMessage(taskDefinition?.path || "Path not found");
-		const exec = `${ansibleCommand} ${taskDefinition?.path}`;
+		const ext = path.extname(name);
+		let exec = `${ansibleCommand} ${taskDefinition?.path}`;
+		if (ext.trim() === ".sh"){
+			exec = taskDefinition?.path as string;
+		}
 		const terminal = vscode.window.createTerminal(taskDefinition?.name);
 		terminal.show();
 		terminal.sendText(exec);
